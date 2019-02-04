@@ -1,4 +1,3 @@
-dotfiles
-========
+# dotfiles
 
 my dotfiles
