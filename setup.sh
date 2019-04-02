@@ -9,7 +9,7 @@ ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 #brew install
-brew install zsh vim tmux z node ffmpeg wget youtube-dl nicovideo-dl nkf nginx kotlin w3m
+brew install zsh vim tmux z gnu-sed
 
 #install neobundle
 curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
