@@ -77,17 +77,14 @@ zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
-#zstyle ':completion::*:(-command-|export):*' fake-parameters ${${${_comps[(I)-value-*]#*,}%%,*}:#-*-}
 zstyle ':completion:::::' completer _complete _approximate
 
 autoload -U zmv
 autoload -U zfinit
 zmodload zsh/complist
-zmodload zsh/zftp
 
 # Configuration
 limit coredumpsize 102400
-#setopt prompt_subst
 setopt NO_beep
 setopt long_list_jobs
 setopt list_types
@@ -238,23 +235,8 @@ if [[ "$TMUX" != "" ]] then
   alias pbpaste="ssh 127.0.0.1 pbpaste"
 fi
 
-# Android-SDK
-export PATH=$PATH:~/Library/Android/sdk/platform-tools
-export PATH=$PATH:~/Library/Android/sdk/tools
-export ANDROID_HOME=$PATH:~/Library/Android/sdk
-
-# The fuck
-eval "$(thefuck --alias)"
-
-# AWS CLI
-#source /usr/local/share/zsh/site-functions/_aws
-
 # z
-. `brew --prefix`/etc/profile.d/z.sh
-compctl -U -K _z_zsh_tab_completion ${_Z_CMD:-z}
-
-# GCP
-export PATH=$PATH:~/Library/google-cloud-sdk/bin
+. /opt/homebrew/etc/profile.d/z.sh
 
 # Terminal
 set_terminal_profile() {
@@ -268,3 +250,5 @@ SCRIPT
 
 # Tab
 tabs -4
+
+PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"

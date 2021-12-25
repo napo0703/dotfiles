@@ -1,57 +1,43 @@
-" Orginal by @geta6
-
 " Default setting
 if filereadable("/etc/vim/vimrc")
   source /etc/vim/vimrc
 endif
 
-" NeoBundle
-set nocompatible
-filetype off
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#begin(expand('~/.vim/bundle/'))
-  NeoBundleFetch 'Shougo/neobundle.vim'
-  NeoBundle 'thinca/vim-quickrun'
-  " Shell
-  NeoBundle 'Shougo/vimproc', {'build':{
-        \ 'mac': 'make -f make_mac.mak',
-        \ 'unix': 'make -f make_unix.mak'
-        \ }}
-  NeoBundle 'Shougo/vimshell'
-  " Utility
-  NeoBundle 'AnsiEsc.vim'
-  NeoBundle 'banyan/recognize_charcode.vim'
-  NeoBundle 'Shougo/neocomplcache'
-  NeoBundle 'itchyny/lightline.vim'
-  NeoBundle 'scrooloose/nerdtree'
-  NeoBundle 'airblade/vim-gitgutter'
-  NeoBundle 'Shougo/unite.vim'
-  " Syntax
-  NeoBundle 'scrooloose/syntastic'
-  NeoBundle 'sheerun/vim-polyglot'
-  NeoBundle 'GutenYe/json5.vim'
-  NeoBundle 'kchmck/vim-coffee-script'
-  NeoBundle 'digitaltoad/vim-jade'
-  NeoBundle "sudar/vim-arduino-syntax"
-  NeoBundle 'udalov/kotlin-vim'
-  " Extend
-  NeoBundle 'altercation/vim-colors-solarized'
-  NeoBundle 'slindberg/vim-colors-smyck'
-  NeoBundle 'w0ng/vim-hybrid'
-  NeoBundle 'jonathanfilip/vim-lucius'
-  call neobundle#end()
+if &compatible
+  set nocompatible               " Be iMproved
 endif
-" Program
 
+" Required:
+set runtimepath+=/Users/napo/.cache/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+call dein#begin('/Users/napo/.cache/dein')
+
+" Let dein manage dein
+" Required:
+call dein#add('/Users/napo/.cache/dein/repos/github.com/Shougo/dein.vim')
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+  call dein#add('Shougo/vimshell')
+  call dein#add('vim-scripts/AnsiEsc.vim')
+  call dein#add('banyan/recognize_charcode.vim')
+  call dein#add('Shougo/neocomplcache')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('Shougo/unite.vim')
+  call dein#add('scrooloose/syntastic')
+  call dein#add('sheerun/vim-polyglot')
+  call dein#add('jonathanfilip/vim-lucius')
+endif
+
+" Required:
+call dein#end()
+
+" Required:
 filetype plugin indent on
-
-if neobundle#exists_not_installed_bundles()
-  echomsg 'Not installed bundles : ' .
-        \ string(neobundle#get_not_installed_bundle_names())
-  echomsg 'Please execute ":NeoBundleInstall" command.'
-endif
-
+syntax enable
 
 "
 " Global configuration
@@ -79,7 +65,6 @@ set t_Co=256
 set wildmenu
 set wildchar=<tab>
 set wildmode=list:full
-"set wildignorecase
 set complete+=k
 set guifont=Ricty\ 15
 set clipboard+=unnamed
@@ -277,4 +262,6 @@ augroup InvisibleIndicator
 augroup END
 
 filetype plugin indent on
-NeoBundleCheck
+
+" brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
